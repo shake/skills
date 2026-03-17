@@ -12,3 +12,4 @@
 * [Tavily Search](https://github.com/tavily-ai/skills)
 * [self-improving-agent](https://github.com/peterskoett/self-improving-agent/blob/master/SKILL.md)
 * [find-skills](https://github.com/vercel-labs/skills/blob/main/skills/find-skills/SKILL.md)
+* [calibre-convert]
