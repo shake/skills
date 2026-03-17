@@ -1,4 +1,4 @@
-## skill 收集
+## skill 收集站
 
 * [anthropics官方skills](https://github.com/anthropics/skills/tree/main)
 * [ClawHub.ai](https://clawhub.ai/)
@@ -6,3 +6,8 @@
 * [Awesome Agent Skills](https://github.com/heilcheng/awesome-agent-skills)
 
 
+
+## 我使用的Skills
+
+* [Tavily Search](https://github.com/tavily-ai/skills)
+* [self-improving-agent](https://github.com/peterskoett/self-improving-agent/blob/master/SKILL.md)
