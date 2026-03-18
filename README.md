@@ -5,6 +5,8 @@
 * [电商skill，公众号](https://github.com/jimliu/baoyu-skills)
 * [Awesome Agent Skills](https://github.com/heilcheng/awesome-agent-skills)
 * [VoltAgent-awesome-openclaw-skills](https://github.com/VoltAgent/awesome-openclaw-skills)
+* [面向每个 Agent 的 Skills 市场
+](https://lobehub.com/zh/skills)
 
 
 
