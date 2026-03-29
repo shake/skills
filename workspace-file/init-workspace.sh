@@ -1,9 +1,10 @@
 #!/bin/bash
 
 ###############################################################################
-# openclaw workspace 初始化脚本 - 精简版
+# openclaw workspace 初始化脚本
 # 功能：备份并更新 IDENTITY.md 和 USER.md
-# 用法：./init-workspace.sh [workspace 目录]
+# 默认路径：~/.openclaw/workspace
+# 用法：./init-workspace.sh [自定义 workspace 目录]
 ###############################################################################
 
 set -e
@@ -15,8 +16,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# 配置
-WORKSPACE_DIR="${1:-workspace}"
+# 配置：默认路径为 ~/.openclaw/workspace，支持参数覆盖
+DEFAULT_WS="${HOME}/.openclaw/workspace"
+WORKSPACE_DIR="${1:-$DEFAULT_WS}"
 BACKUP_DIR="${WORKSPACE_DIR}/.backup"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
@@ -29,11 +31,14 @@ log_success() { echo -e "${GREEN}[OK]${NC} $1"; }
 log_error()   { echo -e "${RED}[ERROR]${NC} $1"; }
 
 check_workspace() {
+    # 如果目录不存在，尝试创建
     if [ ! -d "$WORKSPACE_DIR" ]; then
-        log_error "工作空间目录不存在：$WORKSPACE_DIR"
-        echo "用法：$0 [workspace 目录路径]"
-        echo "示例：$0 ./workspace"
-        exit 1
+        log_info "工作空间目录不存在，正在创建：$WORKSPACE_DIR"
+        mkdir -p "$WORKSPACE_DIR" || {
+            log_error "无法创建目录：$WORKSPACE_DIR"
+            log_error "请检查权限，或手动创建后重试"
+            exit 1
+        }
     fi
     log_info "工作空间目录：$WORKSPACE_DIR"
 }
@@ -47,7 +52,7 @@ backup_file() {
         cp "$file" "$backup_path"
         log_success "已备份：$filename → ${backup_path#$WORKSPACE_DIR/}"
     else
-        log_info "无需备份（文件不存在）：$(basename $file)"
+        log_info "无需备份（文件不存在）：$(basename "$file")"
     fi
 }
 
@@ -91,8 +96,10 @@ verify_files() {
     done
     
     if [ $errors -gt 0 ]; then
+        log_error "验证失败：$errors 个文件有问题"
         exit 1
     fi
+    log_success "所有文件验证通过 ✓"
 }
 
 show_summary() {
@@ -109,7 +116,7 @@ show_summary() {
     echo "   - USER.md      (用户信息)"
     echo ""
     echo "🚀 下一步："
-    echo "   1. 启动 openclaw"
+    echo "   1. 启动 openclaw，指向该工作空间"
     echo "   2. 测试对话：'你是谁？' / '我是谁？'"
     echo ""
 }
@@ -124,6 +131,9 @@ main() {
     echo "║   openclaw workspace 初始化脚本        ║"
     echo "╚════════════════════════════════════════╝"
     echo ""
+    
+    # 展开 ~ 为 $HOME（确保兼容所有 shell 环境）
+    WORKSPACE_DIR="${WORKSPACE_DIR/#\~/$HOME}"
     
     check_workspace
     echo ""
