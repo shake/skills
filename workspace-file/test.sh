@@ -22,6 +22,8 @@ DEFAULT_WS="${HOME}/.openclaw/workspace"
 DEFAULT_BOT="kim"
 DEFAULT_USER="Shake"
 DEFAULT_TZ="Asia/Shanghai"  # ✅ 北京/东八区 (标准 IANA 格式)
+# 👇 新增：头像 URL 默认值（支持环境变量覆盖）
+AVATAR_URL="${AVATAR_URL:-https://api.dicebear.com/7.x/avataaars/svg?seed=${BOT_NAME:-bot}}"
 
 # 初始化变量
 WORKSPACE_DIR=""
@@ -133,6 +135,8 @@ parse_args() {
     BOT_NAME="${BOT_NAME:-$DEFAULT_BOT}"
     USER_NAME="${USER_NAME:-$DEFAULT_USER}"
     TIMEZONE="${TIMEZONE:-$DEFAULT_TZ}"
+    # 头像 URL：如果未设置，使用默认 DiceBear API（seed 用 BOT_NAME 保证唯一）
+    AVATAR_URL="${AVATAR_URL:-https://api.dicebear.com/7.x/avataaars/svg?seed=${BOT_NAME}}"
 
     # 展开 ~ 为 $HOME
     WORKSPACE_DIR="${WORKSPACE_DIR/#\~/$HOME}"
@@ -184,7 +188,7 @@ create_identity() {
 - **专业背景：** 专注 IT 与信息工作领域，擅长信息检索、数据分析与自动化流程
 - **沟通风格：** 专业、高效、逻辑严密，拒绝套话
 - **表情符号：** 🤖
-- **头像：** 
+- **头像：** ![](${AVATAR_URL})\
 EOF
     log_success "已创建：IDENTITY.md（机器人: ${BOT_NAME}）"
 }
