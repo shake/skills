@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-30T15:39:45.906Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-30T15:39:35.923Z",
+    "lastRunVersion": "2026.3.28",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "minimax:cn": {
+        "provider": "minimax",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "api": "anthropic-messages",
+        "authHeader": true,
+        "models": [
+          {
+            "id": "MiniMax-M2.7",
+            "name": "MiniMax M2.7",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.3,
+              "output": 1.2,
+              "cacheRead": 0.06,
+              "cacheWrite": 0.375
+            },
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "minimax/MiniMax-M2.7"
+      },
+      "models": {
+        "minimax/MiniMax-M2.7": {
+          "alias": "Minimax"
+        }
+      },
+      "workspace": "/home/shake/.openclaw/workspace"
+    }
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "tavily"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "command-logger": {
+          "enabled": true
+        },
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a9243e75cc9",
+      "appSecret": "LjmJCVso5ItEeuiWbJQiGdyYwh",
+      "connectionMode": "websocket",
+      "domain": "feishu",
+      "groupPolicy": "open",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "5a2639958220c7a9807c2d6daad7d1ccd6e772bd06"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "tavily": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": "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"
+          }
+        }
+      },
+      "feishu": {
+        "enabled": true,
+        "config": {}
+      }
+    }
+  }
+}
