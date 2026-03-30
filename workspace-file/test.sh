@@ -22,7 +22,7 @@ DEFAULT_WS="${HOME}/.openclaw/workspace"
 DEFAULT_BOT="kim"
 DEFAULT_USER="Shake"
 DEFAULT_TZ="Asia/Shanghai"  # ✅ 北京/东八区 (标准 IANA 格式)
-AVATAR_URL="${AVATAR_URL:-https://api.dicebear.com/7.x/avataaars/svg?seed=${BOT_NAME:-bot}"
+AVATAR_URL="${AVATAR_URL:-https://api.dicebear.com/7.x/avataaars/svg?seed=${BOT_NAME:-bot}}"
 
 # 初始化变量
 WORKSPACE_DIR=""
