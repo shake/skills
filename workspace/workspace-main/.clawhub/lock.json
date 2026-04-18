@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "skills": {
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1776425404367
+    },
+    "context-recovery": {
+      "version": "1.2.2",
+      "installedAt": 1776425416814
+    },
+    "config-guardian": {
+      "version": "1.0.1",
+      "installedAt": 1776425422661
+    },
+    "openclaw-cost-guard": {
+      "version": "0.1.0",
+      "installedAt": 1776425428925
+    }
+  }
+}
